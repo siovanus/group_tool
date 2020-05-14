@@ -31,10 +31,10 @@ var DefConfig = NewConfig()
 
 //Config object used by ontology-instance
 type Config struct {
-	//list of pk
-	PK1 string
-	PK2 string
-	PK3 string
+	//list of ontid
+	OntId1 string
+	OntId2 string
+	OntId3 string
 }
 
 //NewConfig retuen a TestConfig instance

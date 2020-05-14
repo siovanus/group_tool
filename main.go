@@ -4,7 +4,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"github.com/ontio/group_tool/config"
-	"github.com/ontio/ontology/account"
 	"github.com/ontio/ontology/common"
 	"github.com/ontio/ontology/smartcontract/service/native/utils"
 )
@@ -54,18 +53,15 @@ func main() {
 		return
 	}
 
-	id1, _ := account.GenerateID()
-	id2, _ := account.GenerateID()
-	id3, _ := account.GenerateID()
 	subGroup := new(Group)
 	subGroup.Threshold = 2
-	subGroup.Members = []interface{}{[]byte(id2), []byte(id3)}
+	subGroup.Members = []interface{}{[]byte(config.DefConfig.OntId2), []byte(config.DefConfig.OntId3)}
 	group := new(Group)
 	group.Threshold = 1
-	group.Members = []interface{}{[]byte(id1), subGroup}
+	group.Members = []interface{}{[]byte(config.DefConfig.OntId1), subGroup}
 
-	signers1 := []Signer{{[]byte(id1), 1}}
-	signers2 := []Signer{{[]byte(id2), 1}, {[]byte(id3), 1}}
+	signers1 := []Signer{{[]byte(config.DefConfig.OntId1), 1}}
+	signers2 := []Signer{{[]byte(config.DefConfig.OntId2), 1}, {[]byte(config.DefConfig.OntId3), 1}}
 
 	g := group.Serialize()
 	s1 := SerializeSigners(signers1)
